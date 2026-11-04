@@ -1,0 +1,77 @@
+test_end_of_input_exits_cleanly (test_menu.MenuBehaviourTests) ... ok
+test_option_1_shows_catalog (test_menu.MenuBehaviourTests) ... ok
+test_option_3_confirmed_places_order (test_menu.MenuBehaviourTests) ... ok
+test_option_3_declined_places_nothing (test_menu.MenuBehaviourTests) ... ok
+test_option_4_with_no_orders (test_menu.MenuBehaviourTests) ... ok
+test_option_5_finds_existing_order (test_menu.MenuBehaviourTests) ... ok
+test_option_6_confirmed_cancels_order (test_menu.MenuBehaviourTests) ... ok
+test_option_6_declined_keeps_order (test_menu.MenuBehaviourTests) ... ok
+test_service_error_returns_to_menu (test_menu.MenuBehaviourTests) ... ok
+test_unknown_choice_shows_hint_and_keeps_running (test_menu.MenuBehaviourTests) ... ok
+test_delivery_is_charged_just_below_10000 (test_order_service.BoundaryBehaviourTests) ... ok
+test_delivery_is_free_at_exactly_10000 (test_order_service.BoundaryBehaviourTests) ... ok
+test_empty_item_list_is_rejected (test_order_service.BoundaryBehaviourTests) ... ok
+test_minimum_quantity_of_one_is_accepted (test_order_service.BoundaryBehaviourTests) ... ok
+test_new_save_file_has_empty_history (test_order_service.BoundaryBehaviourTests) ... ok
+test_ordering_exactly_all_available_stock_succeeds (test_order_service.BoundaryBehaviourTests) ... ok
+test_ordering_one_more_than_available_stock_fails (test_order_service.BoundaryBehaviourTests) ... ok
+test_quantity_100_is_rejected_by_the_quantity_rule (test_order_service.BoundaryBehaviourTests) ... ok
+test_quantity_99_passes_quantity_rule_but_fails_on_stock (test_order_service.BoundaryBehaviourTests) ... ok
+test_student_subtotal_below_5000_gets_no_discount (test_order_service.BoundaryBehaviourTests) ... ok
+test_student_subtotal_of_exactly_5000_gets_discount (test_order_service.BoundaryBehaviourTests) ... FAIL
+test_cancelling_twice_does_not_restore_stock_twice (test_order_service.InvalidBehaviourTests) ... FAIL
+test_cli_returns_exit_code_2_for_unknown_product (test_order_service.InvalidBehaviourTests) ... ok
+test_duplicate_lines_cannot_exceed_available_stock (test_order_service.InvalidBehaviourTests) ... FAIL
+test_invalid_customer_type_is_rejected (test_order_service.InvalidBehaviourTests) ... ok
+test_invalid_fulfillment_is_rejected (test_order_service.InvalidBehaviourTests) ... ok
+test_invalid_quantities_are_rejected (test_order_service.InvalidBehaviourTests) ... ok
+test_item_that_is_not_a_dictionary_is_rejected (test_order_service.InvalidBehaviourTests) ... ok
+test_malformed_save_file_raises_instead_of_resetting (test_order_service.InvalidBehaviourTests) ... ok
+test_rejected_request_does_not_change_saved_data (test_order_service.InvalidBehaviourTests) ... ok
+test_unknown_order_id_is_rejected_for_lookup_and_cancel (test_order_service.InvalidBehaviourTests) ... ok
+test_unknown_product_is_rejected (test_order_service.InvalidBehaviourTests) ... ok
+test_list_orders_returns_orders_in_placement_order (test_order_service.NormalBehaviourTests) ... ok
+test_multi_item_quote_has_correct_lines_and_total (test_order_service.NormalBehaviourTests) ... ok
+test_regular_delivery_three_hoodies_gets_free_delivery (test_order_service.NormalBehaviourTests) ... ok
+test_student_delivery_order_matches_spec_example (test_order_service.NormalBehaviourTests) ... ok
+test_cancelled_order_stays_in_history_with_original_totals (test_order_service.PreservedBehaviourTests) ... ok
+test_cli_quote_prints_json_and_returns_0 (test_order_service.PreservedBehaviourTests) ... ok
+test_menu_quote_shows_total_and_creates_no_order (test_order_service.PreservedBehaviourTests) ... ok
+test_money_formats_cents_as_dollars (test_order_service.PreservedBehaviourTests) ... ok
+test_order_ids_are_not_reused_after_cancellation (test_order_service.PreservedBehaviourTests) ... ok
+test_orders_and_stock_survive_reopening (test_order_service.PreservedBehaviourTests) ... ok
+test_quote_and_placed_order_have_identical_pricing (test_order_service.PreservedBehaviourTests) ... ok
+test_quote_does_not_save_reserve_stock_or_use_an_order_id (test_order_service.PreservedBehaviourTests) ... ok
+test_cancel_order_restores_stock (test_smoke.OrderSmokeTests) ... ok
+test_order_can_be_reopened (test_smoke.OrderSmokeTests) ... ok
+test_regular_pickup_quote (test_smoke.OrderSmokeTests) ... ok
+test_student_delivery_quote (test_smoke.OrderSmokeTests) ... ok
+
+======================================================================
+FAIL: test_student_subtotal_of_exactly_5000_gets_discount (test_order_service.BoundaryBehaviourTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/senadhibulankulame/Desktop/Software Eng/Assignments/A2/A2-repo/COMP3415-A2-Campus-Supply-Desk/tests/test_order_service.py", line 113, in test_student_subtotal_of_exactly_5000_gets_discount
+    self.assertEqual(quote["discount_cents"], 500)
+AssertionError: 0 != 500
+
+======================================================================
+FAIL: test_cancelling_twice_does_not_restore_stock_twice (test_order_service.InvalidBehaviourTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/senadhibulankulame/Desktop/Software Eng/Assignments/A2/A2-repo/COMP3415-A2-Campus-Supply-Desk/tests/test_order_service.py", line 215, in test_cancelling_twice_does_not_restore_stock_twice
+    self.assertEqual(self.stock_of("mug"), 8)
+AssertionError: 10 != 8
+
+======================================================================
+FAIL: test_duplicate_lines_cannot_exceed_available_stock (test_order_service.InvalidBehaviourTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/senadhibulankulame/Desktop/Software Eng/Assignments/A2/A2-repo/COMP3415-A2-Campus-Supply-Desk/tests/test_order_service.py", line 204, in test_duplicate_lines_cannot_exceed_available_stock
+    self.service.place_order("regular", [
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.018s
+
+FAILED (failures=3)
