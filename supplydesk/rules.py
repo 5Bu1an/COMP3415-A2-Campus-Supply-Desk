@@ -10,7 +10,8 @@ DEFAULT_CUSTOMER_TYPE = REGULAR
 # Fulfillment options
 PICKUP = "pickup"
 DELIVERY = "delivery"
-FULFILLMENT_OPTIONS = (PICKUP, DELIVERY)
+EXPRESS = "express"                      # CR-01
+FULFILLMENT_OPTIONS = (PICKUP, DELIVERY, EXPRESS)
 DEFAULT_FULFILLMENT = PICKUP
 
 # Quantity limits per line
@@ -21,6 +22,9 @@ MAX_QUANTITY = 99
 STUDENT_DISCOUNT_THRESHOLD_CENTS = 5000
 STUDENT_DISCOUNT_PERCENT = 10
 
-# Delivery: flat fee unless the discounted subtotal reaches the threshold
+# Standard delivery: flat fee unless the discounted subtotal reaches the threshold
 DELIVERY_FEE_CENTS = 600
 FREE_DELIVERY_THRESHOLD_CENTS = 10000
+
+# Express delivery (CR-01): flat fee, never waived
+EXPRESS_FEE_CENTS = 1200
