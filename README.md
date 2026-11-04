@@ -92,20 +92,31 @@ No order has been placed. To purchase items, choose **3 — Place an order** fro
 From the folder containing `README.md`, `supplydesk`, and `tests`, run:
 
 ```sh
-python -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -v
 ```
 
-The supplied tests should finish with:
+The current suite should finish with:
 
 ```text
-Ran 4 tests
+Ran 62 tests
 
-OK
+FAILED (failures=3)
 ```
 
-These four tests are a starting point. **Passing them does not mean every required behavior is correct.** You will add meaningful tests as part of the assignment.
+The 3 failures are known behavioural defects found in Task 2. They are intentionally left unfixed, because the refactorings preserve existing behaviour:
 
-The supplied tests use temporary files and do not change your saved orders or stock.
+- `test_student_subtotal_of_exactly_5000_gets_discount`: the spec requires the discount at a subtotal of at least 5,000; the code uses `>`.
+- `test_cancelling_twice_does_not_restore_stock_twice`: cancelling an order twice restores stock twice.
+- `test_duplicate_lines_cannot_exceed_available_stock`: duplicate lines are checked separately instead of combined.
+
+Test files:
+
+- `tests/test_smoke.py`: supplied starter tests
+- `tests/test_order_service.py`: Task 2 safety-net tests
+- `tests/test_menu.py`: menu characterization tests, added before Refactoring 3
+- `tests/test_cr01_express.py`: CR-01 express delivery tests
+
+Saved test runs for each stage are in `evidence/` (01 baseline to 07 after CR-01). The tests use temporary files and do not change your saved orders or stock.
 
 ## 4. Saved data and practice sessions
 
@@ -172,6 +183,7 @@ You can perform operations directly instead of using the menu. These commands ar
 python -m supplydesk catalog
 python -m supplydesk quote --customer regular --item notebook:2
 python -m supplydesk quote --customer student --fulfillment delivery --item hoodie:2
+python -m supplydesk quote --customer student --fulfillment express --item hoodie:2
 ```
 
 Use repeated `--item` options for multiple items:
